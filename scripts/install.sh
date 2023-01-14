@@ -64,6 +64,7 @@ get_binaries() {
   case "$PLATFORM" in
     darwin/386) BINARIES="helm-schema-gen" ;;
     darwin/amd64) BINARIES="helm-schema-gen" ;;
+    darwin/arm64) BINARIES="helm-schema-gen" ;;
     linux/386) BINARIES="helm-schema-gen" ;;
     linux/amd64) BINARIES="helm-schema-gen" ;;
     windows/386) BINARIES="helm-schema-gen" ;;
@@ -104,6 +105,7 @@ adjust_os() {
     darwin) OS=Darwin ;;
     linux) OS=Linux ;;
     windows) OS=Windows ;;
+    *)
   esac
   true
 }
@@ -350,7 +352,7 @@ End of functions from https://github.com/client9/shlib
 EOF
 
 PROJECT_NAME="helm-schema-gen"
-OWNER=karuppiah7890
+OWNER=phisco
 REPO="helm-schema-gen"
 BINARY=helm-schema-gen
 FORMAT=tar.gz
@@ -382,7 +384,7 @@ adjust_arch
 
 log_info "found version: ${VERSION} for ${TAG}/${OS}/${ARCH}"
 
-NAME=${PROJECT_NAME}_${VERSION}_${OS}_${ARCH}
+NAME=${PROJECT_NAME}_${OS}_${ARCH}
 TARBALL=${NAME}.${FORMAT}
 TARBALL_URL=${GITHUB_DOWNLOAD}/${TAG}/${TARBALL}
 CHECKSUM=${PROJECT_NAME}_${VERSION}_checksums.txt
